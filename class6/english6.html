@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English — Class 6 | Zenith Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ─── Reset & Root ─────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --navy:#001f3f;--navy-mid:#002f5c;--navy-light:#003f7a;
+      --navy-glass:rgba(0,31,63,0.72);--white:#ffffff;--white-soft:#e8f0f8;
+      --gold:#c9a84c;--gold-light:#e8c96a;--accent:#1a9bdb;
+      --accent-glow:rgba(26,155,219,0.35);--text-muted:rgba(255,255,255,0.62);
+      --english:#f472b6;--english-dim:rgba(244,114,182,0.15);--english-border:rgba(244,114,182,0.3);
+      --font-display:'Cinzel',serif;--font-body:'Mulish',sans-serif;
+      --radius-sm:6px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
+      --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden;line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px;}
+    .container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+
+    /* ─── Stars Background ─────────────────────────────────────── */
+    .stars-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(ellipse at 20% 30%,rgba(26,155,219,0.08) 0%,transparent 55%),
+      radial-gradient(ellipse at 80% 70%,rgba(244,114,182,0.05) 0%,transparent 55%),var(--navy);}
+    .stars-bg::before,.stars-bg::after{content:'';position:absolute;inset:0;
+      background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.55) 0%,transparent 100%),
+      radial-gradient(1px 1px at 30% 50%,rgba(255,255,255,0.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 55% 15%,rgba(255,255,255,0.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 75% 80%,rgba(255,255,255,0.5) 0%,transparent 100%),
+      radial-gradient(2px 2px at 45% 60%,rgba(244,114,182,0.5) 0%,transparent 100%),
+      radial-gradient(2px 2px at 85% 10%,rgba(26,155,219,0.7) 0%,transparent 100%);}
+    .stars-bg::after{background-image:
+      radial-gradient(1px 1px at 25% 45%,rgba(255,255,255,0.3) 0%,transparent 100%),
+      radial-gradient(1px 1px at 70% 25%,rgba(255,255,255,0.45) 0%,transparent 100%),
+      radial-gradient(2px 2px at 35% 85%,rgba(201,168,76,0.6) 0%,transparent 100%);}
+
+    /* ─── Header ───────────────────────────────────────────────── */
+    .header{position:sticky;top:0;z-index:1000;background:var(--navy-glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid rgba(201,168,76,0.2);box-shadow:0 4px 32px rgba(0,0,0,0.4);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.25rem;font-weight:900;letter-spacing:0.04em;}
+    .logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--navy);font-weight:900;box-shadow:0 0 16px var(--accent-glow);flex-shrink:0;}
+    .logo-text span{color:var(--gold);}
+    .nav-links{display:none;list-style:none;gap:6px;align-items:center;}
+    .nav-links li{position:relative;}
+    .nav-links a{display:block;padding:8px 16px;font-weight:600;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--white-soft);border-radius:var(--radius-sm);transition:color var(--transition),background var(--transition);}
+    .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.08);}
+    .has-dropdown>a::after{content:' ▾';font-size:0.7rem;opacity:0.7;}
+    .dropdown{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy-mid);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);overflow:hidden;min-width:150px;box-shadow:0 16px 40px rgba(0,0,0,0.5);animation:fadeDown 0.2s ease forwards;}
+    @keyframes fadeDown{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .has-dropdown:hover .dropdown{display:block;}
+    .dropdown a{border-radius:0;padding:10px 20px;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .dropdown a:last-child{border-bottom:none;}.dropdown a:hover{background:rgba(201,168,76,0.15);color:var(--gold-light);}
+    .nav-cta{display:none!important;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy)!important;font-weight:700!important;border-radius:var(--radius-sm)!important;padding:8px 20px!important;box-shadow:0 4px 18px rgba(201,168,76,0.35);transition:box-shadow var(--transition),transform var(--transition)!important;}
+    .nav-cta:hover{box-shadow:0 6px 28px rgba(201,168,76,0.55);transform:translateY(-1px)!important;}
+    .hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:6px;border-radius:var(--radius-sm);transition:background var(--transition);}
+    .hamburger:hover{background:rgba(255,255,255,0.08);}
+    .hamburger span{display:block;width:100%;height:2px;background:var(--white);border-radius:2px;transition:transform 0.35s ease,opacity 0.25s ease;transform-origin:center;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+    /* ─── Mobile Menu ──────────────────────────────────────────── */
+    .mobile-menu{display:none;flex-direction:column;background:rgba(0,20,45,0.97);backdrop-filter:blur(20px);position:fixed;inset:64px 0 0 0;z-index:999;padding:24px 20px 40px;overflow-y:auto;}
+    .mobile-menu.open{display:flex;}
+    .mobile-links{list-style:none;display:flex;flex-direction:column;gap:4px;}
+    .mobile-links>li>a,.mobile-acc-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 18px;font-size:1.05rem;font-weight:600;letter-spacing:0.04em;color:var(--white-soft);border-radius:var(--radius-md);background:none;border:none;cursor:pointer;font-family:var(--font-body);transition:background var(--transition),color var(--transition);}
+    .mobile-links>li>a:hover,.mobile-acc-btn:hover{background:rgba(255,255,255,0.07);color:var(--white);}
+    .mobile-acc-btn .acc-arrow{font-size:0.8rem;transition:transform 0.3s ease;}
+    .mobile-acc-btn.open .acc-arrow{transform:rotate(180deg);}
+    .mobile-acc-content{display:none;flex-direction:column;padding:4px 0 8px 18px;gap:2px;}
+    .mobile-acc-content.open{display:flex;}
+    .mobile-acc-content a{display:block;padding:10px 16px;font-size:0.9rem;color:var(--text-muted);border-radius:var(--radius-sm);border-left:2px solid rgba(201,168,76,0.3);transition:color var(--transition),border-color var(--transition),background var(--transition);}
+    .mobile-acc-content a:hover{color:var(--gold-light);border-color:var(--gold);background:rgba(201,168,76,0.08);}
+    .mobile-menu-cta{margin-top:28px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;text-align:center;padding:16px;border-radius:var(--radius-md);font-size:1rem;letter-spacing:0.06em;box-shadow:0 6px 24px rgba(201,168,76,0.4);}
+    .mobile-divider{height:1px;background:rgba(255,255,255,0.08);margin:16px 0;}
+
+    /* ─── Page Hero ────────────────────────────────────────────── */
+    .page-hero{position:relative;z-index:1;padding:48px 20px 44px;text-align:center;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;z-index:0;
+      background:radial-gradient(ellipse 65% 70% at 50% 0%,rgba(244,114,182,0.12) 0%,transparent 70%),
+      radial-gradient(ellipse 40% 40% at 90% 85%,rgba(201,168,76,0.08) 0%,transparent 60%);}
+    .page-hero-content{position:relative;z-index:1;}
+    .breadcrumb{display:inline-flex;align-items:center;gap:6px;font-size:0.7rem;font-weight:700;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:14px;text-transform:uppercase;flex-wrap:wrap;justify-content:center;max-width:100%;}
+    .breadcrumb a{color:var(--gold);transition:color var(--transition);}.breadcrumb a:hover{color:var(--gold-light);}
+    .breadcrumb i{font-size:0.55rem;opacity:0.45;}
+    .subject-badge{display:inline-flex;align-items:center;gap:8px;background:var(--english-dim);border:1px solid var(--english-border);padding:7px 16px;border-radius:99px;font-size:0.73rem;font-weight:700;letter-spacing:0.08em;color:#f9a8d4;text-transform:uppercase;margin-bottom:18px;animation:fadeUp 0.5s 0.1s ease both;box-shadow:0 0 28px rgba(244,114,182,0.15);max-width:100%;}
+    .page-title{font-family:var(--font-display);font-size:clamp(1.8rem,7vw,4rem);font-weight:900;line-height:1.1;margin-bottom:14px;animation:fadeUp 0.5s 0.2s ease both;}
+    .page-title .highlight{background:linear-gradient(135deg,#f472b6,#fbcfe8,var(--gold-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .page-subtitle{font-size:clamp(0.85rem,2vw,1.02rem);color:var(--text-muted);max-width:500px;margin:0 auto 32px;line-height:1.75;animation:fadeUp 0.5s 0.3s ease both;}
+
+    /* Stats strip */
+    .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:100%;margin:0 auto;background:rgba(0,47,92,0.5);border:1px solid rgba(244,114,182,0.2);border-radius:var(--radius-lg);overflow:hidden;animation:fadeUp 0.5s 0.4s ease both;}
+    .hs{text-align:center;padding:16px 8px;border-right:1px solid rgba(255,255,255,0.06);}
+    .hs:last-child{border-right:none;}
+    .hs-num{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--gold-light);display:block;line-height:1;}
+    .hs-label{font-size:0.6rem;color:var(--text-muted);letter-spacing:0.05em;text-transform:uppercase;font-weight:700;margin-top:4px;display:block;}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+    /* ─── Tab Switcher ─────────────────────────────────────────── */
+    .tabs-wrap{position:relative;z-index:1;padding:0;margin-top:48px;}
+    .tabs-container{display:flex;justify-content:center;margin-bottom:52px;padding:0 4px;}
+    .tab-bar{display:inline-flex;background:rgba(0,47,92,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:99px;padding:5px;gap:4px;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .tab-bar::-webkit-scrollbar{display:none;}
+    .tab-btn{padding:9px 16px;border-radius:99px;border:none;background:transparent;color:var(--text-muted);font-family:var(--font-body);font-size:0.78rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:all var(--transition);white-space:nowrap;flex-shrink:0;}
+    .tab-btn.active{background:linear-gradient(135deg,rgba(244,114,182,0.25),rgba(244,114,182,0.1));color:#f9a8d4;border:1px solid rgba(244,114,182,0.35);box-shadow:0 0 16px rgba(244,114,182,0.15);}
+    .tab-btn:hover:not(.active){background:rgba(255,255,255,0.06);color:var(--white);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+
+    /* ─── Book Label ───────────────────────────────────────────── */
+    .book-label{display:flex;align-items:center;gap:12px;margin-bottom:28px;padding:14px 18px;background:rgba(0,47,92,0.5);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-lg);border-left:3px solid var(--english);min-width:0;}
+    .book-label-icon{width:40px;height:40px;min-width:40px;border-radius:var(--radius-sm);background:var(--english-dim);border:1px solid var(--english-border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .book-label-info{min-width:0;overflow:hidden;}
+    .book-label-title{font-family:var(--font-display);font-size:0.88rem;font-weight:700;color:var(--white);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .book-label-sub{font-size:0.72rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+    /* ─── Chapters Grid ────────────────────────────────────────── */
+    .chapters-section{position:relative;z-index:1;padding:0 0 80px;}
+    .section-header{text-align:center;margin-bottom:44px;}
+    .section-kicker{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+    .section-title{font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:10px;}
+    .section-sub{color:var(--text-muted);font-size:0.88rem;max-width:460px;margin:0 auto;}
+    .section-line{width:48px;height:3px;background:linear-gradient(90deg,#f472b6,var(--accent));border-radius:2px;margin:14px auto 0;}
+
+    .chapters-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+
+    /* Chapter Row Card */
+    .chapter-card{position:relative;overflow:hidden;background:rgba(0,47,92,0.45);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:0;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);display:flex;align-items:stretch;max-width:100%;}
+    .chapter-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#f472b6,var(--accent));opacity:0;transition:opacity var(--transition);}
+    .chapter-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4);border-color:rgba(244,114,182,0.3);}
+    .chapter-card:hover::after{opacity:1;}
+
+    .ch-number{display:flex;align-items:center;justify-content:center;width:52px;min-width:52px;background:rgba(244,114,182,0.07);border-right:1px solid rgba(255,255,255,0.06);font-family:var(--font-display);font-size:0.85rem;font-weight:900;color:rgba(244,114,182,0.6);letter-spacing:0.02em;flex-shrink:0;}
+    .chapter-card:hover .ch-number{color:#f472b6;background:rgba(244,114,182,0.12);}
+
+    .ch-body{display:flex;align-items:center;gap:12px;padding:14px 14px;flex:1;min-width:0;overflow:hidden;}
+    .ch-type-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:transform var(--transition);}
+    .chapter-card:hover .ch-type-icon{transform:scale(1.08) rotate(-4deg);}
+    .ch-info{flex:1;min-width:0;overflow:hidden;}
+    .ch-title{font-weight:700;font-size:0.88rem;color:var(--white);margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
+    .ch-author{font-size:0.72rem;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .ch-tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+    .ch-tag{display:inline-flex;align-items:center;gap:3px;font-size:0.6rem;font-weight:700;letter-spacing:0.05em;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:var(--text-muted);}
+    .ch-tag.prose{background:rgba(244,114,182,0.08);border-color:rgba(244,114,182,0.22);color:#f9a8d4;}
+    .ch-tag.poem{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.25);color:var(--gold-light);}
+    .ch-tag.story{background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.22);color:#93c5fd;}
+
+    .ch-actions{display:none;align-items:center;gap:8px;padding:14px 14px 14px 0;flex-shrink:0;}
+    .ch-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold-light);padding:7px 14px;border-radius:var(--radius-sm);border:1px solid rgba(201,168,76,0.25);background:rgba(201,168,76,0.07);transition:all var(--transition);white-space:nowrap;}
+    .ch-btn:hover{background:rgba(201,168,76,0.16);border-color:rgba(201,168,76,0.5);transform:translateY(-1px);}
+    .ch-btn i{font-size:0.65rem;}
+
+    /* ─── Poem Panel (special layout) ─────────────────────────── */
+    .poems-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+    .poem-card{position:relative;overflow:hidden;background:rgba(0,47,92,0.45);border:1px solid rgba(201,168,76,0.12);border-radius:var(--radius-lg);padding:20px 16px;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .poem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),#f472b6);opacity:0;transition:opacity var(--transition);}
+    .poem-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.4);border-color:rgba(201,168,76,0.3);}
+    .poem-card:hover::before{opacity:1;}
+    .poem-icon{font-size:1.6rem;margin-bottom:12px;display:block;}
+    .poem-num{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+    .poem-title{font-family:var(--font-display);font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:4px;line-height:1.3;}
+    .poem-author{font-size:0.72rem;color:var(--text-muted);margin-bottom:12px;}
+    .poem-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold-light);padding:6px 12px;border-radius:var(--radius-sm);border:1px solid rgba(201,168,76,0.25);background:rgba(201,168,76,0.07);transition:all var(--transition);}
+    .poem-btn:hover{background:rgba(201,168,76,0.16);border-color:rgba(201,168,76,0.5);}
+    .poem-btn i{font-size:0.62rem;transition:transform var(--transition);}
+    .poem-btn:hover i{transform:translateX(3px);}
+
+    /* ─── Grammar & Writing section ───────────────────────────── */
+    .resources-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+    .res-card{background:rgba(0,47,92,0.45);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:24px 20px;transition:border-color var(--transition),transform var(--transition);}
+    .res-card:hover{border-color:rgba(244,114,182,0.3);transform:translateY(-4px);}
+    .res-icon{width:46px;height:46px;border-radius:var(--radius-sm);background:var(--english-dim);border:1px solid var(--english-border);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:14px;}
+    .res-title{font-family:var(--font-display);font-size:0.9rem;font-weight:700;margin-bottom:6px;color:var(--white);}
+    .res-sub{font-size:0.78rem;color:var(--text-muted);line-height:1.55;margin-bottom:14px;}
+    .res-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+    .res-list li{font-size:0.76rem;color:var(--text-muted);display:flex;align-items:flex-start;gap:6px;}
+    .res-list li::before{content:'›';color:var(--english);font-weight:900;font-size:0.85rem;line-height:1.3;flex-shrink:0;}
+    .res-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#f9a8d4;padding:7px 14px;border-radius:var(--radius-sm);border:1px solid rgba(244,114,182,0.25);background:rgba(244,114,182,0.07);transition:all var(--transition);}
+    .res-btn:hover{background:rgba(244,114,182,0.15);border-color:rgba(244,114,182,0.45);}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* ─── CTA Banner ───────────────────────────────────────────── */
+    .cta-banner{position:relative;z-index:1;padding:64px 20px;background:linear-gradient(135deg,rgba(0,63,122,0.9) 0%,rgba(0,31,63,0.95) 100%);border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);text-align:center;overflow:hidden;}
+    .cta-banner::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(244,114,182,0.07) 0%,transparent 70%);pointer-events:none;}
+    .cta-banner h2{font-family:var(--font-display);font-size:clamp(1.6rem,5vw,2.6rem);font-weight:900;margin-bottom:14px;}
+    .cta-banner p{color:var(--text-muted);margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto;}
+    .cta-form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:0 auto;}
+    .cta-input{padding:14px 20px;border-radius:var(--radius-md);background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);color:var(--white);font-size:0.95rem;font-family:var(--font-body);outline:none;transition:border-color var(--transition);}
+    .cta-input::placeholder{color:rgba(255,255,255,0.4);}.cta-input:focus{border-color:var(--gold);}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;font-size:0.95rem;padding:15px 36px;border-radius:var(--radius-md);letter-spacing:0.05em;text-transform:uppercase;box-shadow:0 8px 32px rgba(201,168,76,0.4);transition:transform var(--transition),box-shadow var(--transition);border:none;cursor:pointer;}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,168,76,0.55);}
+
+    /* ─── Footer ───────────────────────────────────────────────── */
+    .footer{position:relative;z-index:1;background:rgba(0,10,25,0.98);border-top:1px solid rgba(255,255,255,0.06);padding:56px 0 0;}
+    .footer-grid{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:48px;}
+    .footer-brand .logo{margin-bottom:14px;}
+    .footer-brand p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;max-width:280px;}
+    .footer-col h4{font-family:var(--font-display);font-size:0.82rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:0.86rem;color:var(--text-muted);transition:color var(--transition);}.footer-links a:hover{color:var(--white);}
+    .footer-address{display:flex;flex-direction:column;gap:12px;}
+    .addr-row{display:flex;gap:10px;align-items:flex-start;}
+    .addr-row i{color:var(--gold);margin-top:3px;font-size:0.85rem;width:16px;flex-shrink:0;}
+    .addr-row span{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .social-row{display:flex;gap:10px;margin-top:6px;}
+    .social-btn{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.95rem;transition:background var(--transition),color var(--transition),border-color var(--transition),transform var(--transition);}
+    .social-btn:hover{background:rgba(201,168,76,0.15);color:var(--gold-light);border-color:rgba(201,168,76,0.35);transform:translateY(-2px);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding:20px 0;display:flex;flex-direction:column;align-items:center;gap:16px;}
+    .footer-bottom p{font-size:0.78rem;color:var(--text-muted);text-align:center;}
+    .footer-admission{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;font-size:0.9rem;padding:13px 30px;border-radius:var(--radius-md);letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 6px 24px rgba(201,168,76,0.38);transition:transform var(--transition),box-shadow var(--transition);}
+    .footer-admission:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,0.55);}
+
+    /* ─── Desktop ──────────────────────────────────────────────── */
+    @media(min-width:768px){
+      .nav-links{display:flex;}.nav-cta{display:block!important;}.hamburger{display:none;}.mobile-menu{display:none!important;}
+      .tab-btn{padding:10px 24px;font-size:0.86rem;}
+      .hs{padding:22px 16px;}.hs-num{font-size:1.55rem;}.hs-label{font-size:0.68rem;}
+      .ch-number{width:64px;min-width:64px;font-size:1rem;}
+      .ch-body{gap:16px;padding:18px 20px;}
+      .ch-type-icon{width:42px;height:42px;font-size:1.1rem;}
+      .ch-title{font-size:0.95rem;}
+      .ch-actions{display:flex;}
+      .poems-grid{grid-template-columns:repeat(4,1fr);}
+      .resources-grid{grid-template-columns:repeat(2,1fr);}
+      .cta-form{flex-direction:row;}.cta-input{flex:1;}
+      .footer-grid{grid-template-columns:2fr 1fr 1fr 1.5fr;gap:32px;}
+      .footer-bottom{flex-direction:row;justify-content:space-between;}
+    }
+    @media(min-width:1024px){
+      .resources-grid{grid-template-columns:repeat(4,1fr);}
+    }
+    /* Remove old 480px override — everything already mobile-first above */
+  </style>
+</head>
+<body>
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <!-- ─── HEADER ─────────────────────────────────────────────────── -->
+  <header class="header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="../index.html" class="logo" aria-label="Zenith Academy Home">
+        <div class="logo-icon" aria-hidden="true">Z</div>
+        <span class="logo-text">Zenith <span>Academy</span></span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#home">Home</a></li>
+        <li class="has-dropdown">
+          <a href="../index.html#classes">Class</a>
+          <ul class="dropdown" role="list">
+            <li><a href="../class6/class6.html">Class 6</a></li>
+            <li><a href="../class7/class7.html">Class 7</a></li>
+            <li><a href="../class8/class8.html">Class 8</a></li>
+            <li><a href="../class9/class9.html">Class 9</a></li>
+            <li><a href="../class10/class10.html">Class 10</a></li>
+          </ul>
+        </li>
+        <li><a href="../index.html#resources">Resources</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#admission" class="nav-cta">Enroll Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ─── MOBILE MENU ─────────────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <ul class="mobile-links" role="list">
+      <li><a href="../index.html#home" class="mobile-link">Home</a></li>
+      <li>
+        <button class="mobile-acc-btn" id="classAccBtn" aria-expanded="false" aria-controls="classAccContent">
+          Class <i class="fas fa-chevron-down acc-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-acc-content" id="classAccContent">
+          <a href="../class6/class6.html">Class 6</a><a href="../class7/class7.html">Class 7</a>
+          <a href="../class8/class8.html">Class 8</a><a href="../class9/class9.html">Class 9</a>
+          <a href="../class10/class10.html">Class 10</a>
+        </div>
+      </li>
+      <li><a href="../index.html#resources" class="mobile-link">Resources</a></li>
+      <li><a href="../index.html#about" class="mobile-link">About</a></li>
+    </ul>
+    <div class="mobile-divider"></div>
+    <a href="../index.html#admission" class="mobile-menu-cta">
+      <i class="fas fa-graduation-cap" aria-hidden="true"></i> Apply for Admission
+    </a>
+  </div>
+
+  <!-- ─── MAIN CONTENT ─────────────────────────────────────────────── -->
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <div class="breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="class6.html">Class 6</a>
+            <i class="fas fa-chevron-right"></i>
+            <span style="color:var(--white-soft);">English</span>
+          </div>
+          <div class="subject-badge">
+            <i class="fas fa-book-open" aria-hidden="true"></i> Class 6 — NCERT English
+          </div>
+          <h1 class="page-title">
+            <span class="highlight">English</span> Chapters
+          </h1>
+          <p class="page-subtitle">
+            Complete NCERT Class 6 English — Honeysuckle &amp; A pact with the Sun. Notes, summaries, and practice papers for every chapter.
+          </p>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTERS SECTION -->
+    <section class="chapters-section">
+      <div class="container">
+
+        <!-- Tab switcher -->
+        <div class="tabs-wrap">
+          <div class="tabs-container">
+            <div class="tab-bar" role="tablist">
+              <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="ff">📘 Honeysuckle</button>
+              <button class="tab-btn"        role="tab" aria-selected="false" data-tab="fwf">📗 A PACT WITH THE SUN</button>
+              <button class="tab-btn"        role="tab" aria-selected="false" data-tab="grammar">✏️ Grammar &amp; Writing</button>
+            </div>
+          </div>
+
+        <!-- ══════════ Honeysuckle ══════════ -->
+          <div class="tab-panel active" id="tab-ff">
+
+            <div class="section-header reveal">
+              <span class="section-kicker">Book 1</span>
+              <h2 class="section-title">Honeysuckle — Prose</h2>
+              <p class="section-sub">10 prose chapters with author details, summaries, and board-pattern Q&amp;A.</p>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="book-label reveal">
+              <div class="book-label-icon">📘</div>
+              <div class="book-label-info">
+                <div class="book-label-title">Honeysuckle — Prose Chapters</div>
+                <div class="book-label-sub">CBSE Class 6 English | NCERT Prescribed Textbook</div>
+              </div>
+            </div>
+
+            <div class="chapters-grid">
+  <!-- Chapter 1 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">01</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🤖</div>
+      <div class="ch-info">
+        <div class="ch-title">Who Did Patrick's Homework?</div>
+        <div class="ch-author">Carol Moore</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1L5eaGVQmteOJug1AY8RtKysOu0ANOh7q"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1L5eaGVQmteOJug1AY8RtKysOu0ANOh7q" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">02</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🐶</div>
+      <div class="ch-info">
+        <div class="ch-title">How the Dog Found Himself a New Master!</div>
+        <div class="ch-author">Folktale</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1PQSwYC3BIv5zqvVnegZwPfG3u6DvWJeB"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1PQSwYC3BIv5zqvVnegZwPfG3u6DvWJeB" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">03</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">💧</div>
+      <div class="ch-info">
+        <div class="ch-title">Taro's Reward</div>
+        <div class="ch-author">Japanese Folktale</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1gCLau4Z81TQVaw5qs8f2n1h2nc51JgAh"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1gCLau4Z81TQVaw5qs8f2n1h2nc51JgAh" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">04</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🚀</div>
+      <div class="ch-info">
+        <div class="ch-title">An Indian-American Woman in Space: Kalpana Chawla</div>
+        <div class="ch-author">Biography</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1Ctb30Pwzs8ZUiv-U2IAOCOC2p5RZPyUj"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1Ctb30Pwzs8ZUiv-U2IAOCOC2p5RZPyUj" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">05</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🎓</div>
+      <div class="ch-info">
+        <div class="ch-title">A Different Kind of School</div>
+        <div class="ch-author">E. V. Lucas</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=17qxWDRIBv7e9R0R4roslj97Sxy0h_GJr"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=17qxWDRIBv7e9R0R4roslj97Sxy0h_GJr" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 6 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">06</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🧍</div>
+      <div class="ch-info">
+        <div class="ch-title">Who I Am</div>
+        <div class="ch-author">Autobiographical sketches</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1kaqYKH_W4y8J-pGQQd5URx8GTtc9332q"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1kaqYKH_W4y8J-pGQQd5URx8GTtc9332q" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 7 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">07</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">⚖️</div>
+      <div class="ch-info">
+        <div class="ch-title">Fair Play</div>
+        <div class="ch-author">Munshi Premchand</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1jN0E99JU3qdmdK7thosc-iW4RF-HhPCv"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1jN0E99JU3qdmdK7thosc-iW4RF-HhPCv" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 8 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">08</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🎲</div>
+      <div class="ch-info">
+        <div class="ch-title">A Game of Chance</div>
+        <div class="ch-author">Anonymous</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1YU8BYitu1gLK4iInqSQN5ELP9DvXqDWX"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1YU8BYitu1gLK4iInqSQN5ELP9DvXqDWX" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 9 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">09</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🐪</div>
+      <div class="ch-info">
+        <div class="ch-title">Desert Animals</div>
+        <div class="ch-author">Informative</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1nkwi8S11Ap_8W60n3BJsGrGoDoCVX7-U"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1nkwi8S11Ap_8W60n3BJsGrGoDoCVX7-U" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+
+  <!-- Chapter 10 -->
+  <div class="chapter-card reveal" tabindex="0">
+    <div class="ch-number">10</div>
+    <div class="ch-body">
+      <div class="ch-type-icon">🌳</div>
+      <div class="ch-info">
+        <div class="ch-title">The Banyan Tree</div>
+        <div class="ch-author">Ruskin Bond</div>
+        <div class="ch-tags">
+          <a href="https://drive.google.com/uc?export=download&id=1sMkQ8zu2amtHVvODQY3gBqqJoMYKrOaq"><span class="ch-tag prose">Worksheet</span></a>
+          <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="ch-actions">
+      <a href="https://drive.google.com/uc?export=download&id=1sMkQ8zu2amtHVvODQY3gBqqJoMYKrOaq" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+      <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+    </div>
+  </div>
+</div>
+
+            <!-- POEMS -->
+            <div class="section-header reveal" style="margin-top:60px;">
+              <span class="section-kicker">Honeysuckle</span>
+              <h2 class="section-title">Poems</h2>
+              <p class="section-sub">8 poems — word meanings, summary, central idea, and literary devices explained.</p>
+              <div class="section-line"></div>
+            </div>
+            <div class="poems-grid">
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">🏠</span>
+                <div class="poem-num">Poem 1</div>
+                <div class="poem-title">A House, A Home</div>
+                <div class="poem-author">Lorraine M. Halli</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">🪁</span>
+                <div class="poem-num">Poem 2</div>
+                <div class="poem-title">The Kite</div>
+                <div class="poem-author">Harry Behn</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">😠</span>
+                <div class="poem-num">Poem 3</div>
+                <div class="poem-title">The Quarrel</div>
+                <div class="poem-author">Eleanor Farjeon</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">🌸</span>
+                <div class="poem-num">Poem 4</div>
+                <div class="poem-title">Beauty</div>
+                <div class="poem-author">E-Yeh-Shure</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">👨‍🏫</span>
+                <div class="poem-num">Poem 5</div>
+                <div class="poem-title">Where Do All the Teachers Go?</div>
+                <div class="poem-author">Peter Dixon</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">✨</span>
+                <div class="poem-num">Poem 6</div>
+                <div class="poem-title">The Wonderful Words</div>
+                <div class="poem-author">Mary O'Neill</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">💼</span>
+                <div class="poem-num">Poem 7</div>
+                <div class="poem-title">Vocation</div>
+                <div class="poem-author">Rabindranath Tagore</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="poem-card reveal" tabindex="0">
+                <span class="poem-icon">🤔</span>
+                <div class="poem-num">Poem 8</div>
+                <div class="poem-title">Whatif</div>
+                <div class="poem-author">Shel Silverstein</div>
+                <a href="#" class="poem-btn">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- /tab-ff -->
+
+          <!-- ══════════ A PACT WITH THE SUN ══════════ -->
+          <div class="tab-panel" id="tab-fwf">
+            <div class="section-header reveal">
+              <span class="section-kicker">Book 2</span>
+              <h2 class="section-title">A Pact with the Sun</h2>
+              <p class="section-sub">8 supplementary reader chapters — summaries, question banks, and important extracts.</p>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="book-label reveal">
+              <div class="book-label-icon">📗</div>
+              <div class="book-label-info">
+                <div class="book-label-title">A Pact with the Sun — Supplementary Reader</div>
+                <div class="book-label-sub">CBSE Class 6 English | NCERT Prescribed Textbook</div>
+              </div>
+            </div>
+
+            <div class="chapters-grid">
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">01</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🐦</div>
+                  <div class="ch-info">
+                    <div class="ch-title">A Tale of Two Birds</div>
+                    <div class="ch-author">Folktale</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">02</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🐍</div>
+                  <div class="ch-info">
+                    <div class="ch-title">The Friendly Mongoose</div>
+                    <div class="ch-author">Ruskin Bond</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">03</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">💎</div>
+                  <div class="ch-info">
+                    <div class="ch-title">The Shepherd's Treasure</div>
+                    <div class="ch-author">Folktale</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">04</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🕰️</div>
+                  <div class="ch-info">
+                    <div class="ch-title">The Old-Clock Shop</div>
+                    <div class="ch-author">Anonymous</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">05</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🎶</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Tansen</div>
+                    <div class="ch-author">Historical</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">06</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🐊</div>
+                  <div class="ch-info">
+                    <div class="ch-title">The Monkey and the Crocodile</div>
+                    <div class="ch-author">Panchatantra</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">07</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">😴</div>
+                  <div class="ch-info">
+                    <div class="ch-title">The Wonder Called Sleep</div>
+                    <div class="ch-author">Informative</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">08</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">☀️</div>
+                  <div class="ch-info">
+                    <div class="ch-title">A Pact with the Sun</div>
+                    <div class="ch-author">Zakir Hussain</div>
+                    <div class="ch-tags">
+                      <a href="#"><span class="ch-tag story">Worksheet</span>
+                      <a href="#"><span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+            </div>
+          </div><!-- /tab-fwf -->
+          <!-- ══════════ GRAMMAR & WRITING ══════════ -->
+          <div class="tab-panel" id="tab-grammar">
+            <div class="section-header reveal">
+              <span class="section-kicker">Skills</span>
+              <h2 class="section-title">Grammar &amp; Writing</h2>
+              <p class="section-sub">Board-focused grammar topics and writing formats with examples and practice sets.</p>
+              <div class="section-line"></div>
+            </div>
+            <div class="resources-grid">
+              <div class="res-card reveal">
+                <div class="res-icon">📝</div>
+                <div class="res-title">Grammar Topics</div>
+                <div class="res-sub">All key grammar areas tested in Class 10 boards.</div>
+                <ul class="res-list">
+                  <li>Tenses — all 12 forms</li>
+                  <li>Active &amp; Passive Voice</li>
+                  <li>Direct &amp; Indirect Speech</li>
+                  <li>Clauses &amp; Phrases</li>
+                  <li>Modals &amp; Determiners</li>
+                  <li>Gap-filling &amp; Editing</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> Practice Now</a>
+              </div>
+              <div class="res-card reveal">
+                <div class="res-icon">✉️</div>
+                <div class="res-title">Formal Letter Writing</div>
+                <div class="res-sub">Formats, samples, and dos &amp; don'ts for board letters.</div>
+                <ul class="res-list">
+                  <li>Letter to the Editor</li>
+                  <li>Letter of Complaint</li>
+                  <li>Letter to the Principal</li>
+                  <li>Application for Job</li>
+                  <li>Order &amp; Inquiry Letters</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> View Formats</a>
+              </div>
+              <div class="res-card reveal">
+                <div class="res-icon">📰</div>
+                <div class="res-title">Article &amp; Speech Writing</div>
+                <div class="res-sub">Step-by-step structure guides with scored samples.</div>
+                <ul class="res-list">
+                  <li>How to write an Article</li>
+                  <li>Speech format &amp; tips</li>
+                  <li>Debate writing</li>
+                  <li>Notice &amp; Poster writing</li>
+                  <li>Message &amp; Email writing</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> View Samples</a>
+              </div>
+              <div class="res-card reveal">
+                <div class="res-icon">📄</div>
+                <div class="res-title">Practice Papers</div>
+                <div class="res-sub">Board-pattern question papers with answer keys.</div>
+                <ul class="res-list">
+                  <li>10 Years Previous Papers</li>
+                  <li>Chapter-wise MCQs</li>
+                  <li>Passage-based Questions</li>
+                  <li>Full Mock Test Series</li>
+                  <li>Marking Scheme PDFs</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> Download</a>
+              </div>
+            </div>
+          </div><!-- /tab-grammar -->
+        </div><!-- /tabs-wrap -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo" aria-label="Zenith Academy Home">
+            <div class="logo-icon" aria-hidden="true">Z</div>
+            <span class="logo-text">Zenith <span>Academy</span></span>
+          </a>
+          <p>Empowering students from Class 6 to 10 with high-class education and a culture of excellence. Follow us to stay updated.</p>
+          <div class="social-row" style="margin-top:18px;">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <address class="footer-address" style="font-style:normal;">
+            <div class="addr-row"><i class="fas fa-map-marker-alt"></i><span>23, Sajid Park B/H Tawakkal Society, Sarkhej Circle<br/>Ahmedabad – 380051, India</span></div>
+            <div class="addr-row"><i class="fas fa-phone"></i><span><a href="tel:+917984130969" style="color:inherit;">+91 79 8413 0969</a></span></div>
+            <div class="addr-row"><i class="fas fa-envelope"></i><span><a href="/cdn-cgi/l/email-protection#bdd4d3dbd2fdc7d8d3d4c9d5dcdedcd9d8d0c493d4d3" style="color:inherit;"><span class="__cf_email__" data-cfemail="4e272028210e342b20273a262f2d2f2a2b2337602720">[email&#160;protected]</span></a></span></div>
+            <div class="addr-row"><i class="fas fa-clock"></i><span>Mon – Sat: 2 PM – 8 PM</span></div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Zenith Academy. All rights reserved. Crafted with ❤️ for young minds.</p>
+        <a href="../../index.html#admission" class="footer-admission">
+          <i class="fas fa-graduation-cap"></i> Admission
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    // ── Hamburger ──
+    <script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburger.addEventListener("click", function () {
+      const o = mobileMenu.classList.toggle("open");
+      hamburger.classList.toggle("open", o);
+      hamburger.setAttribute("aria-expanded", o);
+      document.body.style.overflow = o ? "hidden" : "";
+    });
+    mobileMenu.querySelectorAll("a.mobile-link, .mobile-acc-content a").forEach(l =>
+      l.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      })
+    );
+
+    // ── Class Accordion ──
+    const accBtn = document.getElementById("classAccBtn");
+    const accContent = document.getElementById("classAccContent");
+    accBtn.addEventListener("click", () => {
+      const o = accContent.classList.toggle("open");
+      accBtn.classList.toggle("open", o);
+      accBtn.setAttribute("aria-expanded", o);
+    });
+
+    // ── Tab Switcher ──
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabBtns.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected","false"); });
+        tabPanels.forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+        // re-trigger reveal for newly visible cards
+        document.querySelectorAll("#tab-" + btn.dataset.tab + " .reveal:not(.visible)").forEach(el => {
+          observer.observe(el);
+        });
+      });
+    });
+
+    // ── Scroll Reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    // ── Stagger cards ──
+    document.querySelectorAll(".chapter-card, .poem-card, .res-card").forEach((c, i) => {
+      c.style.transitionDelay = (i % 8) * 0.05 + "s";
+    });
+    
+    </script>
+</body>
+</html>

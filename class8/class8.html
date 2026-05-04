@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 8 — Zenith Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#001f3f;--navy-mid:#002f5c;--navy-light:#003f7a;--navy-glass:rgba(0,31,63,0.72);--white:#ffffff;--white-soft:#e8f0f8;--gold:#c9a84c;--gold-light:#e8c96a;--accent:#1a9bdb;--accent-glow:rgba(26,155,219,0.35);--text-muted:rgba(255,255,255,0.62);--font-display:'Cinzel',serif;--font-body:'Mulish',sans-serif;--radius-sm:6px;--radius-md:12px;--radius-lg:20px;--shadow-lg:0 20px 60px rgba(0,0,0,0.45);--transition:0.3s cubic-bezier(0.4,0,0.2,1); }
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-body);background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden;line-height:1.6;}
+    img{max-width:100%;display:block;} a{text-decoration:none;color:inherit;}
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--navy);} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px;}
+    .container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+    .stars-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 20% 30%,rgba(26,155,219,0.08) 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(201,168,76,0.06) 0%,transparent 55%),var(--navy);}
+    .stars-bg::before,.stars-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.55) 0%,transparent 100%),radial-gradient(1px 1px at 30% 50%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 55% 15%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(2px 2px at 45% 60%,rgba(201,168,76,0.7) 0%,transparent 100%),radial-gradient(2px 2px at 85% 10%,rgba(26,155,219,0.7) 0%,transparent 100%);}
+    .stars-bg::after{background-image:radial-gradient(1px 1px at 25% 45%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 70% 25%,rgba(255,255,255,0.45) 0%,transparent 100%),radial-gradient(2px 2px at 35% 85%,rgba(201,168,76,0.6) 0%,transparent 100%);}
+    .header{position:sticky;top:0;z-index:1000;background:var(--navy-glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid rgba(201,168,76,0.2);box-shadow:0 4px 32px rgba(0,0,0,0.4);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.25rem;font-weight:900;letter-spacing:0.04em;}
+    .logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--navy);font-weight:900;box-shadow:0 0 16px var(--accent-glow);flex-shrink:0;}
+    .logo-text span{color:var(--gold);}
+    .nav-links{display:none;list-style:none;gap:6px;align-items:center;}
+    .nav-links li{position:relative;}
+    .nav-links a{display:block;padding:8px 16px;font-weight:600;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--white-soft);border-radius:var(--radius-sm);transition:color var(--transition),background var(--transition);}
+    .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.08);}
+    .nav-links a.active{color:var(--gold-light)!important;}
+    .has-dropdown>a::after{content:' ▾';font-size:0.7rem;opacity:0.7;}
+    .dropdown{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy-mid);border:1px solid rgba(201,168,76,0.25);border-radius:var(--radius-md);overflow:hidden;min-width:150px;box-shadow:0 16px 40px rgba(0,0,0,0.5);animation:fadeDown 0.2s ease forwards;}
+    @keyframes fadeDown{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .has-dropdown:hover .dropdown{display:block;}
+    .dropdown a{border-radius:0;padding:10px 20px;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .dropdown a:last-child{border-bottom:none;}
+    .dropdown a:hover{background:rgba(201,168,76,0.15);color:var(--gold-light);}
+    .nav-cta{display:none;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy)!important;font-weight:700!important;border-radius:var(--radius-sm)!important;padding:8px 20px!important;box-shadow:0 4px 18px rgba(201,168,76,0.35);transition:box-shadow var(--transition),transform var(--transition)!important;}
+    .nav-cta:hover{box-shadow:0 6px 28px rgba(201,168,76,0.55);transform:translateY(-1px)!important;}
+    .hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:6px;border-radius:var(--radius-sm);transition:background var(--transition);}
+    .hamburger:hover{background:rgba(255,255,255,0.08);}
+    .hamburger span{display:block;width:100%;height:2px;background:var(--white);border-radius:2px;transition:transform 0.35s ease,opacity 0.25s ease;transform-origin:center;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-menu{display:none;flex-direction:column;background:rgba(0,20,45,0.97);backdrop-filter:blur(20px);position:fixed;inset:64px 0 0 0;z-index:999;padding:24px 20px 40px;overflow-y:auto;animation:slideIn 0.3s ease forwards;}
+    @keyframes slideIn{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+    .mobile-menu.open{display:flex;}
+    .mobile-links{list-style:none;display:flex;flex-direction:column;gap:4px;}
+    .mobile-links>li>a,.mobile-acc-btn{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:var(--radius-md);font-weight:600;font-size:1rem;color:var(--white-soft);background:none;border:none;width:100%;text-align:left;cursor:pointer;transition:background var(--transition),color var(--transition);}
+    .mobile-links>li>a:hover,.mobile-acc-btn:hover{background:rgba(255,255,255,0.07);color:var(--white);}
+    .acc-arrow{transition:transform 0.3s ease;font-size:0.75rem;}
+    .mobile-acc-btn.open .acc-arrow{transform:rotate(180deg);}
+    .mobile-acc-content{display:none;flex-direction:column;gap:2px;padding:6px 0 6px 16px;}
+    .mobile-acc-content.open{display:flex;}
+    .mobile-acc-content a{padding:10px 16px;border-radius:var(--radius-sm);font-size:0.9rem;color:var(--text-muted);transition:background var(--transition),color var(--transition);}
+    .mobile-acc-content a:hover{background:rgba(201,168,76,0.1);color:var(--gold-light);}
+    .mobile-divider{height:1px;background:rgba(255,255,255,0.08);margin:16px 0;}
+    .mobile-menu-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;font-size:1rem;padding:16px;border-radius:var(--radius-md);letter-spacing:0.04em;}
+    .breadcrumb{position:relative;z-index:1;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+    .breadcrumb-inner{display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-muted);}
+    .breadcrumb-inner a{color:var(--gold);transition:color var(--transition);}
+    .breadcrumb-inner a:hover{color:var(--gold-light);}
+    .breadcrumb-inner i{font-size:0.65rem;}
+    .page-hero{position:relative;z-index:1;padding:72px 0 56px;text-align:center;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,155,219,0.07) 0%,transparent 65%);pointer-events:none;}
+    .page-hero::after{content:'8';position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:clamp(8rem,18vw,18rem);font-weight:900;color:rgba(201,168,76,0.04);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.05em;}
+    .page-kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .page-kicker::before,.page-kicker::after{content:'';display:block;width:30px;height:1px;background:var(--gold);opacity:0.5;}
+    .page-title{font-family:var(--font-display);font-size:clamp(2.2rem,7vw,4.2rem);font-weight:900;line-height:1.1;margin-bottom:18px;letter-spacing:0.01em;}
+    .page-title .highlight{background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .page-subtitle{font-size:clamp(0.9rem,2.5vw,1.1rem);color:var(--text-muted);max-width:520px;margin:0 auto 32px;line-height:1.7;}
+    .page-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:28px;margin-top:36px;}
+    .pstat{display:flex;flex-direction:column;align-items:center;gap:4px;}
+    .pstat-num{font-family:var(--font-display);font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .pstat-label{font-size:0.75rem;color:var(--text-muted);letter-spacing:0.05em;text-transform:uppercase;}
+    .filter-bar{position:relative;z-index:1;padding:0 0 40px;}
+    .filter-inner{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+    .filter-btn{padding:8px 20px;border-radius:99px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);font-family:var(--font-body);font-size:0.82rem;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:all var(--transition);}
+    .filter-btn:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3);color:var(--gold-light);}
+    .filter-btn.active{background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(26,155,219,0.15));border-color:var(--gold);color:var(--gold-light);}
+    .subjects-section{position:relative;z-index:1;padding:0 0 80px;}
+    .section-header{text-align:center;margin-bottom:48px;}
+    .section-kicker{display:inline-block;font-family:var(--font-display);font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+    .section-title{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:12px;}
+    .section-sub{font-size:0.95rem;color:var(--text-muted);max-width:480px;margin:0 auto 16px;}
+    .section-line{width:60px;height:3px;margin:0 auto;background:linear-gradient(90deg,var(--gold),var(--accent));border-radius:2px;}
+    .subjects-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+    .subject-card{background:rgba(0,47,92,0.55);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius-lg);padding:28px 24px;display:flex;flex-direction:column;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);cursor:pointer;position:relative;overflow:hidden;}
+    .subject-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--card-accent,linear-gradient(90deg,var(--gold),var(--accent)));opacity:0;transition:opacity var(--transition);}
+    .subject-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,0.45);border-color:rgba(201,168,76,0.3);}
+    .subject-card:hover::before{opacity:1;}
+    .card-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+    .subject-icon{width:56px;height:56px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+    .card-meta{flex:1;}
+    .subject-group{font-family:var(--font-display);font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+    .subject-name{font-family:var(--font-display);font-size:1.15rem;font-weight:700;line-height:1.25;margin-bottom:4px;}
+    .subject-board{font-size:0.75rem;color:var(--text-muted);}
+    .subject-desc{font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px;flex:1;}
+    .topic-list{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
+    .topic-chip{font-size:0.72rem;font-weight:600;letter-spacing:0.04em;padding:4px 11px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--white-soft);transition:background var(--transition),border-color var(--transition);}
+    .subject-card:hover .topic-chip{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2);}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;margin-top:auto;}
+    .card-resources{display:flex;gap:14px;}
+    .res-badge{display:flex;align-items:center;gap:5px;font-size:0.73rem;color:var(--text-muted);}
+    .res-badge i{color:var(--gold);font-size:0.78rem;}
+    .card-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(26,155,219,0.15);border:1px solid rgba(26,155,219,0.3);color:#5bc8f0;font-size:0.78rem;font-weight:700;padding:8px 18px;border-radius:99px;letter-spacing:0.05em;text-transform:uppercase;transition:all var(--transition);}
+    .card-btn:hover{background:rgba(26,155,219,0.28);border-color:rgba(26,155,219,0.55);transform:translateX(2px);}
+    .card-btn i{font-size:0.7rem;transition:transform var(--transition);}
+    .card-btn:hover i{transform:translateX(3px);}
+    .subject-card.hidden{display:none;}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .topper-banner{position:relative;z-index:1;margin:0 0 72px;padding:48px 24px;background:linear-gradient(135deg,rgba(201,168,76,0.1) 0%,rgba(26,155,219,0.08) 100%);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);overflow:hidden;text-align:center;}
+    .topper-banner::before{content:'★';position:absolute;top:-30px;right:-20px;font-size:12rem;color:rgba(201,168,76,0.04);pointer-events:none;}
+    .topper-banner h3{font-family:var(--font-display);font-size:clamp(1.2rem,4vw,1.8rem);font-weight:900;margin-bottom:10px;}
+    .topper-banner h3 span{color:var(--gold);}
+    .topper-banner p{color:var(--text-muted);font-size:0.9rem;max-width:480px;margin:0 auto 24px;}
+    .topper-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;font-size:0.9rem;padding:14px 32px;border-radius:var(--radius-md);letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 6px 24px rgba(201,168,76,0.35);transition:transform var(--transition),box-shadow var(--transition);}
+    .topper-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,0.55);}
+    .footer{position:relative;z-index:1;background:rgba(0,10,25,0.98);border-top:1px solid rgba(255,255,255,0.06);padding:56px 0 0;}
+    .footer-grid{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:48px;}
+    .footer-brand .logo{margin-bottom:14px;}
+    .footer-brand p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;max-width:280px;}
+    .footer-col h4{font-family:var(--font-display);font-size:0.82rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:0.86rem;color:var(--text-muted);transition:color var(--transition);}
+    .footer-links a:hover{color:var(--white);}
+    .footer-address{display:flex;flex-direction:column;gap:12px;}
+    .addr-row{display:flex;gap:10px;align-items:flex-start;}
+    .addr-row i{color:var(--gold);margin-top:3px;font-size:0.85rem;width:16px;flex-shrink:0;}
+    .addr-row span{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .social-row{display:flex;gap:10px;margin-top:18px;}
+    .social-btn{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.95rem;transition:background var(--transition),color var(--transition),border-color var(--transition),transform var(--transition);}
+    .social-btn:hover{background:rgba(201,168,76,0.15);color:var(--gold-light);border-color:rgba(201,168,76,0.35);transform:translateY(-2px);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding:20px 0;display:flex;flex-direction:column;align-items:center;gap:16px;}
+    .footer-bottom p{font-size:0.78rem;color:var(--text-muted);text-align:center;}
+    .footer-admission{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--navy);font-weight:700;font-size:0.9rem;padding:13px 30px;border-radius:var(--radius-md);letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 6px 24px rgba(201,168,76,0.38);transition:transform var(--transition),box-shadow var(--transition);}
+    .footer-admission:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,0.55);}
+    .no-results{display:none;grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);font-size:1rem;}
+    .no-results i{font-size:2.5rem;color:var(--gold);opacity:0.4;margin-bottom:16px;display:block;}
+    .no-results.show{display:block;}
+    @media(min-width:768px){.nav-links{display:flex;}.nav-cta{display:block!important;}.hamburger{display:none;}.mobile-menu{display:none!important;}.subjects-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:2fr 1fr 1fr 1.5fr;gap:32px;}.footer-bottom{flex-direction:row;justify-content:space-between;}}
+    @media(min-width:1024px){.subjects-grid{grid-template-columns:repeat(3,1fr);}}
+  </style>
+</head>
+<body>
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><div class="logo-icon">Z</div><span class="logo-text">Zenith <span>Academy</span></span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="has-dropdown">
+          <a href="#" class="active">Class</a>
+          <ul class="dropdown" role="list">
+            <li><a href="../class6/class6.html">Class 6</a></li>
+            <li><a href="../class7/class7.html">Class 7</a></li>
+            <li><a href="../class8/class8.html" style="color:var(--gold-light);">Class 8 ✦</a></li>
+            <li><a href="../class9/class9.html">Class 9</a></li>
+            <li><a href="../class10/class10.html">Class 10</a></li>
+          </ul>
+        </li>
+        <li><a href="../index.html#resources">Resources</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#admission" class="nav-cta">Enroll Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+    <ul class="mobile-links" role="list">
+      <li><a href="../index.html" class="mobile-link">Home</a></li>
+      <li>
+        <button class="mobile-acc-btn" id="classAccBtn" aria-expanded="false" aria-controls="classAccContent">Class <i class="fas fa-chevron-down acc-arrow"></i></button>
+        <div class="mobile-acc-content" id="classAccContent" role="list">
+          <a href="../class6/class6.html">Class 6</a><a href="../class7/class7.html">Class 7</a>
+          <a href="../class8/class8.html" style="color:var(--gold-light);">Class 8 ✦</a>
+          <a href="../class9/class9.html">Class 9</a><a href="../class10/class10.html">Class 10</a>
+        </div>
+      </li>
+      <li><a href="../index.html#resources" class="mobile-link">Resources</a></li>
+      <li><a href="../index.html#about" class="mobile-link">About</a></li>
+    </ul>
+    <div class="mobile-divider"></div>
+    <a href="../index.html#admission" class="mobile-menu-cta"><i class="fas fa-graduation-cap"></i> Apply for Admission</a>
+  </div>
+
+  <main>
+    <div class="breadcrumb"><div class="container"><div class="breadcrumb-inner">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <i class="fas fa-chevron-right"></i><a href="#">Classes</a>
+      <i class="fas fa-chevron-right"></i><span>Class 8</span>
+    </div></div></div>
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-kicker">Zenith Academy</div>
+        <h1 class="page-title">Class <span class="highlight">8</span> Subjects</h1>
+        <p class="page-subtitle">Geometry, chemistry, history, and advanced algebra — Class 8 is the pivotal year that bridges the junior classes to the board-level curriculum ahead.</p>
+        
+      </div>
+    </section>
+
+    <div class="filter-bar"><div class="container"><div class="filter-inner" role="group">
+      <button class="filter-btn active" data-filter="all">All Subjects</button>
+      <button class="filter-btn" data-filter="science">Science</button>
+      <button class="filter-btn" data-filter="maths">Mathematics</button>
+      <button class="filter-btn" data-filter="language">Languages</button>
+      <button class="filter-btn" data-filter="social">Social Science</button>
+    </div></div></div>
+
+    <section class="subjects-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-kicker">Choose Your Subject</span>
+          <h2 class="section-title">Explore All Subjects</h2>
+          <p class="section-sub">Click any subject to access notes, worksheets, and practice papers.</p>
+          <div class="section-line"></div>
+        </div>
+        <div class="subjects-grid" id="subjectsGrid">
+
+          <div class="subject-card reveal" data-category="maths" style="--card-accent:linear-gradient(90deg,#c9a84c,#1a9bdb);">
+            <div class="card-top">
+              <div class="subject-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.25),rgba(26,155,219,0.2));">📐</div>
+              <div class="card-meta"><div class="subject-group">Mathematics</div><div class="subject-name">Mathematics</div><div class="subject-board">NCERT • Class 8</div></div>
+            </div>
+            <p class="subject-desc">Master rational numbers, squares, cubes, linear equations, and mensuration. A comprehensive curriculum that prepares students for the rigour of Class 9 and 10 maths.</p>
+            <div class="topic-list">
+              <span class="topic-chip">Rational Numbers</span><span class="topic-chip">Squares & Square Roots</span><span class="topic-chip">Cubes & Cube Roots</span><span class="topic-chip">Linear Equations</span><span class="topic-chip">Mensuration</span><span class="topic-chip">Exponents & Powers</span>
+            </div>
+            <div class="card-footer"><div class="card-resources"><span class="res-badge"><i class="fas fa-file-alt"></i> Notes</span><span class="res-badge"><i class="fas fa-edit"></i> Papers</span></div><a href="maths8.html" class="card-btn">Explore <i class="fas fa-arrow-right"></i></a></div>
+          </div>
+            <!--Science-->
+          <div class="subject-card reveal" data-category="science" style="--card-accent:linear-gradient(90deg,#3de0a0,#1a9bdb);">
+            <div class="card-top">
+              <div class="subject-icon" style="background:linear-gradient(135deg,rgba(61,224,160,0.25),rgba(26,155,219,0.2));">🔬</div>
+              <div class="card-meta"><div class="subject-group">Science</div><div class="subject-name">Science</div><div class="subject-board">NCERT • Class 8</div></div>
+            </div>
+            <p class="subject-desc">Crop production, microorganisms, combustion, force, and cell structure — Class 8 science introduces the foundation for Physics, Chemistry, and Biology as separate disciplines.</p>
+            <div class="topic-list">
+              <span class="topic-chip">Crop Production</span><span class="topic-chip">Microorganisms</span><span class="topic-chip">Combustion & Flame</span><span class="topic-chip">Force & Pressure</span><span class="topic-chip">Cell Structure</span><span class="topic-chip">Sound</span>
+            </div>
+            <div class="card-footer"><div class="card-resources"><span class="res-badge"><i class="fas fa-file-alt"></i> Notes</span><span class="res-badge"><i class="fas fa-edit"></i> Papers</span></div><a href="Science8.html" class="card-btn">Explore <i class="fas fa-arrow-right"></i></a></div>
+          </div>
+
+          <div class="subject-card reveal" data-category="social" style="--card-accent:linear-gradient(90deg,#7bcc52,#52c9c9);">
+            <div class="card-top">
+              <div class="subject-icon" style="background:linear-gradient(135deg,rgba(123,204,82,0.25),rgba(82,201,201,0.2));">🗳️</div>
+              <div class="card-meta"><div class="subject-group">Social Science</div><div class="subject-name">Social Science</div><div class="subject-board">GSEB • Class 8</div></div>
+            </div>
+            <p class="subject-desc">From the establishment of British rule to the 1857 revolt, the rise of nationalism, and the struggle for independence. Modern India history in full detail.</p>
+            <div class="topic-list">
+              <span class="topic-chip">Arrival of Europeans in India</span><span class="topic-chip">Post-Independence India</span><span class="topic-chip">Natural Disasters</span><span class="topic-chip">Effects of the British Rule in India</span><span class="topic-chip">Human Resources</span>
+            </div>
+            <div class="card-footer"><div class="card-resources"><span class="res-badge"><i class="fas fa-file-alt"></i> Notes</span><span class="res-badge"><i class="fas fa-edit"></i> Papers</span></div><a href="SS8.html" class="card-btn">Explore <i class="fas fa-arrow-right"></i></a></div>
+          </div>
+
+          <div class="subject-card reveal" data-category="language" style="--card-accent:linear-gradient(90deg,#c9a84c,#e87c4a);">
+            <div class="card-top">
+              <div class="subject-icon" style="background:linear-gradient(135deg,rgba(201,168,76,0.25),rgba(232,124,74,0.2));">📖</div>
+              <div class="card-meta"><div class="subject-group">Language</div><div class="subject-name">English</div><div class="subject-board">GSEB • Class 8</div></div>
+            </div>
+            <p class="subject-desc">Build advanced language skills through Honeydew and It So Happened. Sharpen grammar, writing, and analytical reading in preparation for board-level English.</p>
+            <div class="topic-list">
+              <span class="topic-chip">Honeydew</span><span class="topic-chip">It So Happened</span><span class="topic-chip">Grammar & Usage</span><span class="topic-chip">Formal Writing</span><span class="topic-chip">Comprehension</span>
+            </div>
+            <div class="card-footer"><div class="card-resources"><span class="res-badge"><i class="fas fa-file-alt"></i> Notes</span><span class="res-badge"><i class="fas fa-edit"></i> Papers</span></div><a href="english8.html" class="card-btn">Explore <i class="fas fa-arrow-right"></i></a></div>
+          </div>
+
+          <div class="subject-card reveal" data-category="language" style="--card-accent:linear-gradient(90deg,#e05252,#c9a84c);">
+            <div class="card-top">
+              <div class="subject-icon" style="background:linear-gradient(135deg,rgba(224,82,82,0.25),rgba(201,168,76,0.2));">🪔</div>
+              <div class="card-meta"><div class="subject-group">Language</div><div class="subject-name">Hindi</div><div class="subject-board">GSEB • Class 8</div></div>
+            </div>
+            <p class="subject-desc">Advance through Vasant Bhag 3, Durva, and Bharat Ki Khoj. Develop nuanced writing and analytical skills while deepening appreciation for Hindi literature and grammar.</p>
+            <div class="topic-list">
+              <span class="topic-chip">Vasant Bhag 3</span><span class="topic-chip">Durva</span><span class="topic-chip">Bharat Ki Khoj</span><span class="topic-chip">Vyakaran</span><span class="topic-chip">Lekhan</span>
+            </div>
+            <div class="card-footer"><div class="card-resources"><span class="res-badge"><i class="fas fa-file-alt"></i> Notes</span><span class="res-badge"><i class="fas fa-edit"></i> Papers</span></div><a href="#" class="card-btn">Explore <i class="fas fa-arrow-right"></i></a></div>
+          </div>
+
+          <div class="no-results" id="noResults"><i class="fas fa-search"></i>No subjects found for this filter.</div>
+        </div>
+
+      
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo"><div class="logo-icon">Z</div><span class="logo-text">Zenith <span>Academy</span></span></a>
+          <p>Empowering students from Class 6 to 10 with high-class education and a culture of excellence.</p>
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#classes">Classes</a></li>
+            <li><a href="../index.html#resources">Resources</a></li>
+            <li><a href="../index.html#about">About Us</a></li>
+            <li><a href="../index.html#admission">Admissions</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <address class="footer-address" style="font-style:normal;">
+            <div class="addr-row"><i class="fas fa-map-marker-alt"></i><span>23, Sajid Park B/H Tawakkal Society, Sarkhej Circle<br>Ahmedabad – 380051, India</span></div>
+            <div class="addr-row"><i class="fas fa-phone"></i><span>+91 79 8413 0969</span></div>
+            <div class="addr-row"><i class="fas fa-clock"></i><span>Mon – Sat: 2 PM – 8 PM</span></div>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Zenith Academy. All rights reserved. Crafted with ❤️ for young minds.</p>
+        <a href="../index.html#admission" class="footer-admission"><i class="fas fa-graduation-cap"></i> Apply Now</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      "use strict";
+      const h=document.getElementById("hamburger"),m=document.getElementById("mobileMenu");
+      h.addEventListener("click",function(){const o=m.classList.toggle("open");h.classList.toggle("open",o);h.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});
+      m.querySelectorAll("a,.mobile-acc-content a").forEach(function(l){l.addEventListener("click",function(){m.classList.remove("open");h.classList.remove("open");h.setAttribute("aria-expanded","false");document.body.style.overflow="";});});
+      const ab=document.getElementById("classAccBtn"),ac=document.getElementById("classAccContent");
+      ab.addEventListener("click",function(){const o=ac.classList.toggle("open");ab.classList.toggle("open",o);ab.setAttribute("aria-expanded",o);});
+      const obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:"0px 0px -40px 0px"});
+      document.querySelectorAll(".reveal").forEach(function(el){obs.observe(el);});
+      document.querySelectorAll(".subject-card").forEach(function(c,i){c.style.transitionDelay=i*0.07+"s";});
+      const fBtns=document.querySelectorAll(".filter-btn"),cards=document.querySelectorAll(".subject-card"),nr=document.getElementById("noResults");
+      fBtns.forEach(function(btn){btn.addEventListener("click",function(){fBtns.forEach(function(b){b.classList.remove("active");});btn.classList.add("active");const f=btn.dataset.filter;let v=0;cards.forEach(function(c){const match=f==="all"||c.dataset.category===f;if(match){c.classList.remove("hidden");c.style.transitionDelay=v*0.07+"s";v++;}else{c.classList.add("hidden");}});nr.classList.toggle("show",v===0);});});
+    })();
+  </script>
+</body>
+</html>

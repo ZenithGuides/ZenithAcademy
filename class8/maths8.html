@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maths — Class 8 | Zenith Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:         #001f3f;
+      --navy-mid:     #002f5c;
+      --navy-light:   #003f7a;
+      --navy-glass:   rgba(0, 31, 63, 0.72);
+      --white:        #ffffff;
+      --white-soft:   #e8f0f8;
+      --gold:         #c9a84c;
+      --gold-light:   #e8c96a;
+      --accent:       #1a9bdb;
+      --accent-glow:  rgba(26, 155, 219, 0.35);
+      --maths:        #38bdf8;
+      --maths-dim:    rgba(56, 189, 248, 0.15);
+      --maths-border: rgba(56, 189, 248, 0.3);
+      --text-muted:   rgba(255, 255, 255, 0.62);
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Mulish', sans-serif;
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+      --radius-xl:  28px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 99px; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── Starry Background ─────────────────────────────────── */
+    .stars-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(26, 155, 219, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(56, 189, 248, 0.05) 0%, transparent 55%),
+        var(--navy);
+    }
+
+    .stars-bg::before,
+    .stars-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.4)  0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.6)  0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.5)  0%, transparent 100%),
+        radial-gradient(2px 2px at 45% 60%, rgba(56,189,248,0.5)   0%, transparent 100%),
+        radial-gradient(2px 2px at 85% 10%, rgba(26,155,219,0.7)   0%, transparent 100%);
+    }
+
+    .stars-bg::after {
+      background-image:
+        radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.3)  0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(2px 2px at 35% 85%, rgba(201,168,76,0.6)   0%, transparent 100%);
+    }
+
+    /* ─── Header / Nav ──────────────────────────────────────── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy-glass);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--gold), var(--accent));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--navy);
+      font-weight: 900;
+      box-shadow: 0 0 16px var(--accent-glow);
+      flex-shrink: 0;
+    }
+
+    .logo-text span { color: var(--gold); }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white-soft);
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+
+    .has-dropdown > a::after { content: ' ▾'; font-size: 0.7rem; opacity: 0.7; }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy-mid);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      min-width: 150px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      animation: fadeDown 0.2s ease forwards;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .has-dropdown { position: relative; }
+    .has-dropdown:hover .dropdown { display: block; }
+
+    .dropdown a {
+      border-radius: 0;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: rgba(201,168,76,0.15); color: var(--gold-light); }
+
+    .nav-cta {
+      display: none !important;
+      background: linear-gradient(135deg, var(--gold), #e8a820);
+      color: var(--navy) !important;
+      font-weight: 700 !important;
+      border-radius: var(--radius-sm) !important;
+      padding: 8px 20px !important;
+      box-shadow: 0 4px 18px rgba(201,168,76,0.35);
+      transition: box-shadow var(--transition), transform var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      box-shadow: 0 6px 28px rgba(201,168,76,0.55);
+      transform: translateY(-1px) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+
+    .hamburger:hover { background: rgba(255,255,255,0.08); }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px)  rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 20, 45, 0.97);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      inset: 64px 0 0 0;
+      z-index: 999;
+      padding: 24px 20px 40px;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-links { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+    .mobile-links > li > a,
+    .mobile-acc-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white-soft);
+      border-radius: var(--radius-md);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .mobile-links > li > a:hover,
+    .mobile-acc-btn:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+    .mobile-acc-btn .acc-arrow { font-size: 0.8rem; transition: transform 0.3s ease; }
+    .mobile-acc-btn.open .acc-arrow { transform: rotate(180deg); }
+
+    .mobile-acc-content {
+      display: none;
+      flex-direction: column;
+      padding: 4px 0 8px 18px;
+      gap: 2px;
+    }
+
+    .mobile-acc-content.open { display: flex; }
+
+    .mobile-acc-content a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid rgba(201,168,76,0.3);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .mobile-acc-content a:hover {
+      color: var(--gold-light);
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    .mobile-menu-cta {
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--gold), #e8a820);
+      color: var(--navy);
+      font-weight: 700;
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.4);
+    }
+
+    .mobile-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
+
+    /* ─── Page Hero ─────────────────────────────────────────── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding: 48px 20px 44px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 65% 70% at 50% 0%, rgba(56,189,248,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 90% 85%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+
+    .page-hero-content { position: relative; z-index: 1; }
+
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .breadcrumb a { color: var(--gold); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--gold-light); }
+    .breadcrumb i { font-size: 0.55rem; opacity: 0.45; }
+
+    .subject-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--maths-dim);
+      border: 1px solid var(--maths-border);
+      padding: 7px 16px;
+      border-radius: 99px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #7dd3fc;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      animation: fadeUp 0.5s 0.1s ease both;
+      box-shadow: 0 0 28px rgba(56,189,248,0.15);
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 7vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+
+    .page-title .highlight {
+      background: linear-gradient(135deg, #38bdf8, #bae6fd, var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-subtitle {
+      font-size: clamp(0.85rem, 2vw, 1.02rem);
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 0;
+      line-height: 1.75;
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Tabs ──────────────────────────────────────────────── */
+    .tabs-wrap {
+      position: relative;
+      z-index: 1;
+      margin-top: 48px;
+    }
+
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 52px;
+      padding: 0 4px;
+    }
+
+    .tab-bar {
+      display: inline-flex;
+      background: rgba(0, 47, 92, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 99px;
+      padding: 5px;
+      gap: 4px;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .tab-bar::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 9px 16px;
+      border-radius: 99px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(56,189,248,0.1));
+      color: #7dd3fc;
+      border: 1px solid rgba(56,189,248,0.35);
+      box-shadow: 0 0 16px rgba(56,189,248,0.15);
+    }
+
+    .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--white); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── Sections ──────────────────────────────────────────── */
+    .chapters-section {
+      position: relative;
+      z-index: 1;
+      padding: 0 0 80px;
+    }
+
+    .section-header { text-align: center; margin-bottom: 44px; }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .section-sub { color: var(--text-muted); font-size: 0.88rem; max-width: 460px; margin: 0 auto; }
+
+    .section-line {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, var(--accent));
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+
+    /* Book label */
+    .book-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding: 14px 18px;
+      background: rgba(0, 47, 92, 0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      border-left: 3px solid var(--maths);
+      min-width: 0;
+    }
+
+    .book-label-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--maths-dim);
+      border: 1px solid var(--maths-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .book-label-title {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .book-label-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ─── Chapter Cards ─────────────────────────────────────── */
+    .chapters-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+    .chapter-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(0, 47, 92, 0.45);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      display: flex;
+      align-items: stretch;
+    }
+
+    .chapter-card::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #38bdf8, var(--accent));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      border-color: rgba(56,189,248,0.3);
+    }
+
+    .chapter-card:hover::after { opacity: 1; }
+
+    .ch-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      min-width: 52px;
+      background: rgba(56,189,248,0.07);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: rgba(56,189,248,0.6);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .chapter-card:hover .ch-number { color: #38bdf8; background: rgba(56,189,248,0.12); }
+
+    .ch-body {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .ch-type-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+
+    .chapter-card:hover .ch-type-icon { transform: scale(1.08) rotate(-4deg); }
+
+    .ch-info { flex: 1; min-width: 0; overflow: hidden; }
+
+    .ch-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--white);
+      margin-bottom: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ch-author {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ch-tags { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+
+    .ch-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: var(--text-muted);
+    }
+
+    .ch-tag.algebra   { background: rgba(56,189,248,0.08);  border-color: rgba(56,189,248,0.22);  color: #7dd3fc; }
+    .ch-tag.geometry  { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.22); color: #c4b5fd; }
+    .ch-tag.number    { background: rgba(251,146,60,0.08);  border-color: rgba(251,146,60,0.22);  color: #fdba74; }
+    .ch-tag.statistics{ background: rgba(52,211,153,0.08);  border-color: rgba(52,211,153,0.22);  color: #6ee7b7; }
+
+    .ch-actions {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 14px 14px 0;
+      flex-shrink: 0;
+    }
+
+    .ch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.07);
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .ch-btn:hover {
+      background: rgba(201,168,76,0.16);
+      border-color: rgba(201,168,76,0.5);
+      transform: translateY(-1px);
+    }
+
+    .ch-btn i { font-size: 0.65rem; }
+
+    /* ─── Formula Cards ─────────────────────────────────────── */
+    .formulas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    .formula-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(0, 47, 92, 0.45);
+      border: 1px solid rgba(56,189,248,0.12);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .formula-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, var(--gold));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .formula-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border-color: rgba(56,189,248,0.3);
+    }
+
+    .formula-card:hover::before { opacity: 1; }
+
+    .formula-icon  { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+    .formula-num   { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+    .formula-title { font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 4px; line-height: 1.3; }
+    .formula-topic { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; }
+
+    .formula-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.07);
+      transition: all var(--transition);
+    }
+
+    .formula-btn:hover { background: rgba(201,168,76,0.16); border-color: rgba(201,168,76,0.5); }
+    .formula-btn i { font-size: 0.62rem; transition: transform var(--transition); }
+    .formula-btn:hover i { transform: translateX(3px); }
+
+    /* ─── Resource Cards ────────────────────────────────────── */
+    .resources-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+    .res-card {
+      background: rgba(0, 47, 92, 0.45);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .res-card:hover { border-color: rgba(56,189,248,0.3); transform: translateY(-4px); }
+
+    .res-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background: var(--maths-dim);
+      border: 1px solid var(--maths-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .res-title  { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; color: var(--white); }
+    .res-sub    { font-size: 0.78rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 14px; }
+
+    .res-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+
+    .res-list li {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .res-list li::before { content: '›'; color: var(--maths); font-weight: 900; font-size: 0.85rem; line-height: 1.3; flex-shrink: 0; }
+
+    .res-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7dd3fc;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(56,189,248,0.25);
+      background: rgba(56,189,248,0.07);
+      transition: all var(--transition);
+    }
+
+    .res-btn:hover { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.45); }
+
+    /* ─── Scroll Reveal ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 10, 25, 0.98);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 56px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+    }
+
+    .footer-brand .logo { margin-bottom: 14px; }
+
+    .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 280px; }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .footer-address { display: flex; flex-direction: column; gap: 12px; }
+
+    .addr-row { display: flex; gap: 10px; align-items: flex-start; }
+    .addr-row i { color: var(--gold); margin-top: 3px; font-size: 0.85rem; width: 16px; flex-shrink: 0; }
+    .addr-row span { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .social-row { display: flex; gap: 10px; margin-top: 6px; }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .social-btn:hover {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold-light);
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-bottom p { font-size: 0.78rem; color: var(--text-muted); text-align: center; }
+
+    .footer-admission {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), #e8a820);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 30px;
+      border-radius: var(--radius-md);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.38);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .footer-admission:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(201,168,76,0.55);
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (min-width: 768px) {
+      .nav-links    { display: flex; }
+      .nav-cta      { display: block !important; }
+      .hamburger    { display: none; }
+      .mobile-menu  { display: none !important; }
+
+      .tab-btn      { padding: 10px 24px; font-size: 0.86rem; }
+
+      .ch-number    { width: 64px; min-width: 64px; font-size: 1rem; }
+      .ch-body      { gap: 16px; padding: 18px 20px; }
+      .ch-type-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+      .ch-title     { font-size: 0.95rem; }
+      .ch-actions   { display: flex; }
+
+      .formulas-grid  { grid-template-columns: repeat(4, 1fr); }
+      .resources-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer-grid   { grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 32px; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; }
+    }
+
+    @media (min-width: 1024px) {
+      .resources-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="../index.html" class="logo" aria-label="Zenith Academy Home">
+        <div class="logo-icon" aria-hidden="true">Z</div>
+        <span class="logo-text">Zenith <span>Academy</span></span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#home">Home</a></li>
+        <li class="has-dropdown">
+          <a href="../index.html#classes">Class</a>
+          <ul class="dropdown" role="list">
+            <li><a href="../class6/class6.html">Class 6</a></li>
+            <li><a href="../class7/class7.html">Class 7</a></li>
+            <li><a href="../class8/class8.html">Class 8</a></li>
+            <li><a href="../class9/class9.html">Class 9</a></li>
+            <li><a href="../class10/class10.html">Class 10</a></li>
+          </ul>
+        </li>
+        <li><a href="../index.html#resources">Resources</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#admission" class="nav-cta">Enroll Now</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ══════════ MOBILE MENU ══════════ -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <ul class="mobile-links" role="list">
+      <li><a href="../index.html#home" class="mobile-link">Home</a></li>
+      <li>
+        <button class="mobile-acc-btn" id="classAccBtn" aria-expanded="false" aria-controls="classAccContent">
+          Class <i class="fas fa-chevron-down acc-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-acc-content" id="classAccContent">
+          <a href="../class6/class6.html">Class 6</a>
+          <a href="../class7/class7.html">Class 7</a>
+          <a href="../class8/class8.html">Class 8</a>
+          <a href="../class9/class9.html">Class 9</a>
+          <a href="../class10/class10.html">Class 10</a>
+        </div>
+      </li>
+      <li><a href="../index.html#resources" class="mobile-link">Resources</a></li>
+      <li><a href="../index.html#about" class="mobile-link">About</a></li>
+    </ul>
+    <div class="mobile-divider"></div>
+    <a href="../index.html#admission" class="mobile-menu-cta">
+      <i class="fas fa-graduation-cap" aria-hidden="true"></i> Apply for Admission
+    </a>
+  </div>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <div class="breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../class8/class8.html">Class 8</a>
+            <i class="fas fa-chevron-right"></i>
+            <span style="color: var(--white-soft);">Mathematics</span>
+          </div>
+
+          <div class="subject-badge">
+            <i class="fas fa-square-root-alt" aria-hidden="true"></i> Class 8 — NCERT Mathematics
+          </div>
+
+          <h1 class="page-title"><span class="highlight">Mathematics</span> Chapters</h1>
+
+          <p class="page-subtitle">
+            Complete NCERT Class 8 Maths — all 16 chapters with detailed notes, solved examples, formula sheets, and practice papers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapters Section -->
+    <section class="chapters-section">
+      <div class="container">
+        <div class="tabs-wrap">
+
+          <!-- Tab Bar -->
+          <div class="tabs-container">
+            <div class="tab-bar" role="tablist">
+              <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="chapters">📘 All Chapters</button>
+              <button class="tab-btn"         role="tab" aria-selected="false" data-tab="formulas">📐 Formula Sheets</button>
+              <button class="tab-btn"         role="tab" aria-selected="false" data-tab="practice">✏️ Practice &amp; Papers</button>
+            </div>
+          </div>
+
+          <!-- ══ TAB: All Chapters ══ -->
+          <div class="tab-panel active" id="tab-chapters">
+
+            <div class="section-header reveal">
+              <span class="section-kicker">NCERT Class 8</span>
+              <h2 class="section-title">Mathematics — Chapters</h2>
+              <p class="section-sub">16 chapters with detailed notes, solved examples, and practice Q&amp;A.</p>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="book-label reveal">
+              <div class="book-label-icon">📘</div>
+              <div class="book-label-info">
+                <div class="book-label-title">Mathematics — Class 8</div>
+                <div class="book-label-sub">CBSE Class 8 Maths | NCERT Prescribed Textbook</div>
+              </div>
+            </div>
+
+            <div class="chapters-grid">
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">01</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">⚖️</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Rational Numbers</div>
+                    <div class="ch-author">Properties of Rational Numbers · Representation on Number Line · Operations</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1K3ceLMQKvP02BNLXaWXQaZIHBJI2x8p7"><span class="ch-tag number">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1K3ceLMQKvP02BNLXaWXQaZIHBJI2x8p7" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">02</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📏</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Linear Equations in One Variable</div>
+                    <div class="ch-author">Solving Equations · Equations Reducible to Linear Form · Word Problems</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1uy39jQg4t_KKUGlenCoPca2yX-J593Kf"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1uy39jQg4t_KKUGlenCoPca2yX-J593Kf" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">03</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🔷</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Understanding Quadrilaterals</div>
+                    <div class="ch-author">Polygons · Parallelogram · Rhombus · Rectangle · Square · Kite</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=16dR5elO191ryNtDXko3bIw_1fiuJgYQk"><span class="ch-tag geometry">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=16dR5elO191ryNtDXko3bIw_1fiuJgYQk" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">04</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📐</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Practical Geometry</div>
+                    <div class="ch-author">Constructing Quadrilaterals · Special Cases · Ruler &amp; Compass</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1YjpxoyGLsD25JDx2C3oqsZJfOEMMFC9U"><span class="ch-tag geometry">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1YjpxoyGLsD25JDx2C3oqsZJfOEMMFC9U" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">05</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📊</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Data Handling</div>
+                    <div class="ch-author">Grouped Data · Histogram · Pie Chart · Probability · Random Experiments</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1JvpLzKTYXJOwQ6tXHaf4PNI76oTlLb_P"><span class="ch-tag statistics">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1JvpLzKTYXJOwQ6tXHaf4PNI76oTlLb_P" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">06</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">⬛</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Squares and Square Roots</div>
+                    <div class="ch-author">Perfect Squares · Patterns · Finding Square Roots · Pythagorean Triplets</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1AA9dUlcpeh7O0GaxHTDup8de6FoOI_N9"><span class="ch-tag number">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1AA9dUlcpeh7O0GaxHTDup8de6FoOI_N9" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">07</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🔢</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Cubes and Cube Roots</div>
+                    <div class="ch-author">Perfect Cubes · Cube Root by Prime Factorisation · Estimation</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1ztes7MZ1yr_3-4aGFu8XSjxgt9abb6mc"><span class="ch-tag number">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1ztes7MZ1yr_3-4aGFu8XSjxgt9abb6mc" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">08</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">💹</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Comparing Quantities</div>
+                    <div class="ch-author">Ratio · Percentage · Profit &amp; Loss · Discount · Tax · Compound Interest</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=15Ew9Lfshe22nJ7qFqmAhjSWeSaNCPHGP"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=15Ew9Lfshe22nJ7qFqmAhjSWeSaNCPHGP" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">09</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🧮</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Algebraic Expressions and Identities</div>
+                    <div class="ch-author">Operations on Expressions · Standard Identities · Multiplication of Polynomials</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1c4HOWuGpLs6JJZKaPYl4rjmgwVUkcxGq"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1c4HOWuGpLs6JJZKaPYl4rjmgwVUkcxGq" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">10</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🏺</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Visualising Solid Shapes</div>
+                    <div class="ch-author">Views of 3D Shapes · Mapping Space · Polyhedra · Euler's Formula</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1JisV9NJnNz0YtIM50vvUo7mnHZMCtGGb"><span class="ch-tag geometry">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1JisV9NJnNz0YtIM50vvUo7mnHZMCtGGb" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">11</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📐</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Mensuration</div>
+                    <div class="ch-author">Area of Trapezium · Quadrilaterals · Surface Area · Volume of Cuboid &amp; Cylinder</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1k6OagcDIsPIJ-gK4WnzQeav4iDOHTru6"><span class="ch-tag geometry">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1k6OagcDIsPIJ-gK4WnzQeav4iDOHTru6" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">12</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📈</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Exponents and Powers</div>
+                    <div class="ch-author">Negative Exponents · Laws of Exponents · Standard Form</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1dc1UkAo7oqdfmqsNldf-wUvX70OYnZb9"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1dc1UkAo7oqdfmqsNldf-wUvX70OYnZb9" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">13</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🔍</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Direct and Inverse Proportions</div>
+                    <div class="ch-author">Direct Proportion · Inverse Proportion · Applications</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=12SWnb-i-MIHCERZ4PM99NpaVTarNwXG9"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=12SWnb-i-MIHCERZ4PM99NpaVTarNwXG9" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">14</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">➗</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Factorisation</div>
+                    <div class="ch-author">Common Factors · Regrouping · Identities · Division of Polynomials</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1jwRcVk9_9WpfQcN1qYUYdvlVOBNq2NgW"><span class="ch-tag algebra">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1jwRcVk9_9WpfQcN1qYUYdvlVOBNq2NgW" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">15</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📊</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Introduction to Graphs</div>
+                    <div class="ch-author">Bar Graphs · Pie Graphs · Line Graphs · Linear Graphs · Applications</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1jUmXYoeuOhSRR_znCt_PvO2odRA53GFd"><span class="ch-tag statistics">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1jUmXYoeuOhSRR_znCt_PvO2odRA53GFd" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">16</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🔢</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Playing with Numbers</div>
+                    <div class="ch-author">Numbers in General Form · Games with Numbers · Divisibility Tests</div>
+                    <div class="ch-tags">
+                      <a href="https://drive.google.com/uc?export=download&id=1Ma_-fRpOpnZ6469KOqdWeZhu9ZM0tU1h"><span class="ch-tag number">Worksheet</span></a>
+                      <a href=""><span class="ch-tag"><i class="fas fa-star"></i> Practice</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="https://drive.google.com/uc?export=download&id=1Ma_-fRpOpnZ6469KOqdWeZhu9ZM0tU1h" class="ch-btn"><i class="fas fa-file-alt"></i> Notes</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-question-circle"></i> Q&amp;A</a>
+                </div>
+              </div>
+
+            </div><!-- /chapters-grid -->
+          </div><!-- /tab-chapters -->
+
+          <!-- ══ TAB: Formula Sheets ══ -->
+          <div class="tab-panel" id="tab-formulas">
+
+            <div class="section-header reveal">
+              <span class="section-kicker">Reference</span>
+              <h2 class="section-title">Formula Sheets</h2>
+              <p class="section-sub">Chapter-wise formula sheets with key rules, memory tricks, and examples.</p>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="chapters-grid">
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">A</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">🔢</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Numbers — Formula Sheet</div>
+                    <div class="ch-author">HCF, LCM, Divisibility Rules, Roman Numerals</div>
+                    <div class="ch-tags">
+                      <span class="ch-tag number">Worksheet</span>
+                      <span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-download"></i> PDF</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-eye"></i> View</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">B</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">½</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Fractions &amp; Decimals — Formula Sheet</div>
+                    <div class="ch-author">Operations, Equivalent Fractions, Conversion Rules</div>
+                    <div class="ch-tags">
+                      <span class="ch-tag number">Worksheet</span>
+                      <span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-download"></i> PDF</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-eye"></i> View</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">C</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">📐</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Geometry — Formula Sheet</div>
+                    <div class="ch-author">Perimeter, Area, Properties of Shapes</div>
+                    <div class="ch-tags">
+                      <span class="ch-tag geometry">Worksheet</span>
+                      <span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-download"></i> PDF</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-eye"></i> View</a>
+                </div>
+              </div>
+
+              <div class="chapter-card reveal" tabindex="0">
+                <div class="ch-number">D</div>
+                <div class="ch-body">
+                  <div class="ch-type-icon">⚖️</div>
+                  <div class="ch-info">
+                    <div class="ch-title">Algebra &amp; Ratio — Formula Sheet</div>
+                    <div class="ch-author">Variables, Expressions, Ratio, Proportion, Unitary Method</div>
+                    <div class="ch-tags">
+                      <span class="ch-tag algebra">Worksheet</span>
+                      <span class="ch-tag"><i class="fas fa-star"></i> Practice</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ch-actions">
+                  <a href="#" class="ch-btn"><i class="fas fa-download"></i> PDF</a>
+                  <a href="#" class="ch-btn"><i class="fas fa-eye"></i> View</a>
+                </div>
+              </div>
+
+            </div><!-- /chapters-grid -->
+          </div><!-- /tab-formulas -->
+
+          <!-- ══ TAB: Practice & Papers ══ -->
+          <div class="tab-panel" id="tab-practice">
+
+            <div class="section-header reveal">
+              <span class="section-kicker">Practice</span>
+              <h2 class="section-title">Practice &amp; Papers</h2>
+              <p class="section-sub">Chapter-wise worksheets, MCQs, and exam papers with answer keys.</p>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="resources-grid">
+
+              <div class="res-card reveal">
+                <div class="res-icon">📝</div>
+                <div class="res-title">Chapter-wise Worksheets</div>
+                <div class="res-sub">Practice worksheets for every chapter with graded difficulty levels.</div>
+                <ul class="res-list">
+                  <li>Number system worksheets</li>
+                  <li>Geometry drawing exercises</li>
+                  <li>Fraction &amp; decimal practice</li>
+                  <li>Algebra expression sets</li>
+                  <li>Answer key included</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> Practice Now</a>
+              </div>
+
+              <div class="res-card reveal">
+                <div class="res-icon">📄</div>
+                <div class="res-title">Previous Year Papers</div>
+                <div class="res-sub">School exam papers and test series with full solutions.</div>
+                <ul class="res-list">
+                  <li>Term 1 &amp; Term 2 papers</li>
+                  <li>Unit test question banks</li>
+                  <li>Half-yearly exam sets</li>
+                  <li>Annual exam papers</li>
+                  <li>Detailed answer keys</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> Download</a>
+              </div>
+
+              <div class="res-card reveal">
+                <div class="res-icon">🧮</div>
+                <div class="res-title">Sample Papers</div>
+                <div class="res-sub">Practice test papers modelled on school exam patterns.</div>
+                <ul class="res-list">
+                  <li>5 full-length sample papers</li>
+                  <li>Chapter-wise MCQ sets</li>
+                  <li>Short answer practice</li>
+                  <li>Fill-in-the-blank sets</li>
+                  <li>Time-bound practice sessions</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> View Samples</a>
+              </div>
+
+              <div class="res-card reveal">
+                <div class="res-icon">🏆</div>
+                <div class="res-title">Important Questions</div>
+                <div class="res-sub">High-frequency questions from every chapter for quick revision.</div>
+                <ul class="res-list">
+                  <li>Top 5 questions per chapter</li>
+                  <li>2-mark &amp; 3-mark question bank</li>
+                  <li>Word problems practice</li>
+                  <li>Construction &amp; geometry questions</li>
+                  <li>Revision checklist</li>
+                </ul>
+                <a href="#" class="res-btn"><i class="fas fa-arrow-right"></i> View Questions</a>
+              </div>
+
+            </div><!-- /resources-grid -->
+          </div><!-- /tab-practice -->
+
+        </div><!-- /tabs-wrap -->
+      </div><!-- /container -->
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="logo" aria-label="Zenith Academy Home">
+            <div class="logo-icon" aria-hidden="true">Z</div>
+            <span class="logo-text">Zenith <span>Academy</span></span>
+          </a>
+          <p>Empowering students from Class 6 to 10 with high-class education and a culture of excellence. Follow us to stay updated.</p>
+          <div class="social-row" style="margin-top: 18px;">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <address class="footer-address" style="font-style: normal;">
+            <div class="addr-row">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>23, Sajid Park B/H Tawakkal Society, Sarkhej Circle<br>Ahmedabad – 380051, India</span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-phone"></i>
+              <span><a href="tel:+917984130969" style="color: inherit;">+91 79 8413 0969</a></span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:info@zenithacademy.in" style="color: inherit;">info@zenithacademy.in</a></span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-clock"></i>
+              <span>Mon – Sat: 2 PM – 8 PM</span>
+            </div>
+          </address>
+        </div>
+
+      </div><!-- /footer-grid -->
+
+      <div class="footer-bottom">
+        <p>© 2024 Zenith Academy. All rights reserved. Crafted with ❤️ for young minds.</p>
+        <a href="../index.html#admission" class="footer-admission">
+          <i class="fas fa-graduation-cap"></i> Apply for Admission
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════ SCRIPTS ══════════ -->
+  <script>
+    // Hamburger toggle
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a.mobile-link, .mobile-acc-content a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Mobile accordion (Classes dropdown)
+    const accBtn     = document.getElementById('classAccBtn');
+    const accContent = document.getElementById('classAccContent');
+
+    accBtn.addEventListener('click', () => {
+      const isOpen = accContent.classList.toggle('open');
+      accBtn.classList.toggle('open', isOpen);
+      accBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Tab switcher — fixed: aria-selected + panel visibility
+    const tabBtns   = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Deactivate all tabs & panels
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        // Activate selected tab & its matching panel
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const targetPanel = document.getElementById('tab-' + btn.dataset.tab);
+        targetPanel.classList.add('active');
+
+        // Trigger scroll-reveal for newly visible items
+        targetPanel.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Stagger card animations
+    document.querySelectorAll('.chapter-card, .formula-card, .res-card').forEach((card, i) => {
+      card.style.transitionDelay = (i % 8) * 0.05 + 's';
+    });
+  </script>
+
+</body>
+</html>

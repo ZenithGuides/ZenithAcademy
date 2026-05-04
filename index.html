@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Academy — Reach Your Peak</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Site Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ─── Background Stars ──────────────────────────────────────────── -->
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <!-- ─── Header ───────────────────────────────────────────────────── -->
+  <header class="header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="#" class="logo" aria-label="Zenith Academy Home">
+        <div class="logo-icon" aria-hidden="true">Z</div>
+        <span class="logo-text">Zenith <span>Academy</span></span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#home" aria-current="page">Home</a></li>
+        <li class="has-dropdown">
+          <a href="#classes" aria-haspopup="true" aria-expanded="false">Class</a>
+          <ul class="dropdown" role="list" aria-label="Class options">
+            <li><a href="class6/class6.html">Class 6</a></li>
+            <li><a href="class7/class7.html">Class 7</a></li>
+            <li><a href="class8/class8.html">Class 8</a></li>
+            <li><a href="class9/class9.html">Class 9</a></li>
+            <li><a href="class10/class10.html">Class 10</a></li>
+          </ul>
+        </li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#admission" class="nav-cta">Enroll Now</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+  </header>
+
+  <!-- ─── Mobile Menu ───────────────────────────────────────────────── -->
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile navigation"
+  >
+    <ul class="mobile-links" role="list">
+      <li><a href="#home" class="mobile-link">Home</a></li>
+      <li>
+        <button
+          class="mobile-acc-btn"
+          id="classAccBtn"
+          aria-expanded="false"
+          aria-controls="classAccContent"
+        >
+          Class <i class="fas fa-chevron-down acc-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-acc-content" id="classAccContent" role="list">
+          <a href="class6/class6.html"  role="listitem">Class 6</a>
+          <a href="class7/class7.html"  role="listitem">Class 7</a>
+          <a href="class8/class8.html"  role="listitem">Class 8</a>
+          <a href="class9/class9.html"  role="listitem">Class 9</a>
+          <a href="class10/class10.html" role="listitem">Class 10</a>
+          
+        </div>
+      </li>
+      <li><a href="#resources" class="mobile-link">Resources</a></li>
+      <li><a href="#about"     class="mobile-link">About</a></li>
+    </ul>
+    <div class="mobile-divider"></div>
+    <a href="#admission" class="mobile-menu-cta">
+      <i class="fas fa-graduation-cap" aria-hidden="true"></i> Apply for Admission
+    </a>
+  </div>
+
+  <!-- ─── Main Content ──────────────────────────────────────────────── -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+      <div class="hero-content container">
+        <div class="hero-badge">Admissions Open 2026–27</div>
+        <h1 class="hero-title" id="heroTitle">
+          Reach Your <span class="highlight">Zenith</span><br />
+          Shape Your Future
+        </h1>
+        <p class="hero-sub">
+          This is an official website of Zenith Academy for study material,practice papers,etc...
+        </p>
+        <div class="hero-actions">
+          <a href="#admission" class="btn-primary">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i> Apply Now
+          </a>
+          <a href="#classes" class="btn-secondary">
+            <i class="fas fa-book-open" aria-hidden="true"></i> Explore Classes
+          </a>
+        </div>
+       
+      </div>
+    </section>
+
+    <!-- CLASSES -->
+    <section class="section section-alt" id="classes" aria-labelledby="classesTitle">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-kicker">Curriculum</span>
+          <h2 class="section-title" id="classesTitle">Our Classes</h2>
+          <p class="section-sub">Structured programs designed for holistic academic excellence at every level.</p>
+          <div class="section-line"></div>
+        </div>
+        <div class="classes-grid">
+          <div class="class-card reveal" id="class6" tabindex="0">
+            <div class="class-icon" aria-hidden="true">🔭</div>
+            <div class="class-num">Class</div>
+            <div class="class-name">Sixth</div>
+            <p class="class-desc">Foundation sciences, mathematics, and  arts.</p>
+            <span class="class-tag"><a href="class6/class6.html">Click Here</a></span>
+          </div>
+          <div class="class-card reveal" id="class7" tabindex="0">
+            <div class="class-icon" aria-hidden="true">🧪</div>
+            <div class="class-num">Class</div>
+            <div class="class-name">Seventh</div>
+            <p class="class-desc">Deeper dives into algebra, biology, and social science.</p>
+            <span class="class-tag"><a href="class7/class7.html">Click Here</a></span>
+          </div>
+          <div class="class-card reveal" id="class8" tabindex="0">
+            <div class="class-icon" aria-hidden="true">📐</div>
+            <div class="class-num">Class</div>
+            <div class="class-name">Eighth</div>
+            <p class="class-desc">Geometry, chemistry, and history in full detail.</p>
+            <span class="class-tag"><a href="class8/class8.html">Click Here</a></span>
+          </div>
+          <div class="class-card reveal" id="class9" tabindex="0">
+            <div class="class-icon" aria-hidden="true">💡</div>
+            <div class="class-num">Class</div>
+            <div class="class-name">Ninth</div>
+            <p class="class-desc">Board-prep begins with physics, economics, literature.</p>
+            <span class="class-tag"><a href="class9/class9.html">Click Here</a></span>
+          </div>
+          <div class="class-card reveal" id="class10" tabindex="0">
+            <div class="class-icon" aria-hidden="true">🏆</div>
+            <div class="class-num">Class</div>
+            <div class="class-name">Tenth</div>
+            <p class="class-desc">Intensive board preparation and career guidance.</p>
+            <span class="class-tag"><a href="class10/class10.html">Click Here</a></span>
+          </div>
+          
+    </section>
+
+    <!-- FEATURES / RESOURCES -->
+    <section class="section" id="resources" aria-labelledby="featuresTitle">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-kicker">Zenith</span>
+          <h2 class="section-title" id="featuresTitle">Extra Resources</h2>
+          <p class="section-sub"></p>
+          <div class="section-line"></div>
+        </div>
+       <a href="#" class="feature-link">
+        <div class="feature-item reveal">
+          <div class="feature-ico" aria-hidden="true">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="feature-body">
+            <h3>Gala Solutions</h3>
+               <p>50+ highly qualified teachers with proven track records in board exam coaching and subject mastery.</p>
+          </div>
+        </div>
+       </a>
+          <a href="#" class="feature-link">
+        <div class="feature-item reveal">
+          <div class="feature-ico" aria-hidden="true">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="feature-body">
+            <h3>Assignment Solution</h3>
+               <p>50+ highly qualified teachers with proven track records in board exam coaching and subject mastery.</p>
+          </div>
+        </div>
+       </a>
+          <a href="#" class="feature-link">
+        <div class="feature-item reveal">
+          <div class="feature-ico" aria-hidden="true">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="feature-body">
+            <h3>Marvel Solutions</h3>
+               <p>50+ highly qualified teachers with proven track records in board exam coaching and subject mastery.</p>
+          </div>
+        </div>
+       </a>
+          <a href="#" class="feature-link">
+        <div class="feature-item reveal">
+          <div class="feature-ico" aria-hidden="true">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="feature-body">
+            <h3>Extra Papers</h3>
+               <p>50+ highly qualified teachers with proven track records in board exam coaching and subject mastery.</p>
+          </div>
+        </div>
+       </a>
+          <a href="#" class="feature-link">
+        <div class="feature-item reveal">
+          <div class="feature-ico" aria-hidden="true">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+        </div>
+       </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / ABOUT -->
+    <section class="section section-alt" id="about" aria-labelledby="testiTitle">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-kicker">Testimonials</span>
+          <h2 class="section-title" id="testiTitle">Words from Our Community</h2>
+          <p class="section-sub">Real stories from students and parents who chose Zenith.</p>
+          <div class="section-line"></div>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card reveal">
+            <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+            <p class="testi-text">"Zenith transformed my daughter's approach to studying. She went from average marks to scoring in the top 5 of her class within one year."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">P</div>
+              <div>
+                <div class="testi-name">Priya Sharma</div>
+                <div class="testi-role">Parent, Class 9</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal">
+            <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+            <p class="testi-text">"The teachers here genuinely care. I was struggling with maths and now it's my strongest subject. The board prep is absolutely unmatched."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">A</div>
+              <div>
+                <div class="testi-name">Arjun Mehta</div>
+                <div class="testi-role">Student, Class 10</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal">
+            <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+            <p class="testi-text">"The digital resources and small class sizes make Zenith stand out. My son feels seen and supported every single day. Worth every rupee."</p>
+            <div class="testi-author">
+              <div class="testi-avatar" aria-hidden="true">R</div>
+              <div>
+                <div class="testi-name">Rajan Patel</div>
+                <div class="testi-role">Parent, Class 7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMISSION CTA -->
+    <section class="cta-banner" id="admission" aria-labelledby="ctaTitle">
+      <div class="container">
+        <h2 id="ctaTitle">Secure Your Child's Seat Today</h2>
+        <p>Limited seats available for 2024–25 admissions. Fill in your details and our team will reach out within 24 hours.</p>
+        <div class="cta-form" role="form" aria-label="Admission enquiry form">
+          <input type="text" class="cta-input" placeholder="Your Name"    aria-label="Your name" />
+          <input type="tel"  class="cta-input" placeholder="Phone Number" aria-label="Phone number" />
+          <a href="mailto:admissions@zenithacademy.in" class="btn-primary" style="white-space:nowrap;">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Enquire Now
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ───────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#" class="logo" aria-label="Zenith Academy Home">
+            <div class="logo-icon" aria-hidden="true">Z</div>
+            <span class="logo-text">Zenith <span>Academy</span></span>
+          </a>
+          <p>Empowering students from Class 6 to 10 with a high-class education and a culture of excellence.Follow us on these platforms to stay updated</p>
+          <div class="social-row" style="margin-top:18px;">
+            <a href="#" class="social-btn" aria-label="Facebook" ><i class="fab fa-facebook-f"  aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"   aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"  ><i class="fab fa-youtube"     aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp" ><i class="fab fa-whatsapp"    aria-hidden="true"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><i class="fab fa-x-twitter"   aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#admission">Admissions</a></li>
+          </ul>
+        </div>
+
+        <!-- Address -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <address class="footer-address" style="font-style:normal;">
+            <div class="addr-row">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>23, Sajid Park B/H Tawakkal Society, Sarkhej Circle<br />Ahmedabad – 380051, India</span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <span><a href="Mob:+917984130969" style="color:inherit;">+91 79 8413 0969</a></span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span><a href="mailto:info@zenithacademy.in" style="color:inherit;">info@zenithacademy.in</a></span>
+            </div>
+            <div class="addr-row">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <span>Mon – Sat: 2 PM – 8 PM</span>
+            </div>
+          </address>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>© 2024 Zenith Academy. All rights reserved. Crafted with ❤️ for young minds.</p>
+        <a href="#admission" class="footer-admission">
+          <i class="fas fa-graduation-cap" aria-hidden="true"></i> Apply for Admission
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Site Script (deferred so DOM is ready) -->
+  <script src="main.js" defer></script>
+
+</body>
+</html>
